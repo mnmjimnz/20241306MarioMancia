@@ -25,7 +25,7 @@ namespace _20241306PruebaTecnicaAFP.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index");
+                return BadRequest(ex);
             }
         }
         [HttpPost]
