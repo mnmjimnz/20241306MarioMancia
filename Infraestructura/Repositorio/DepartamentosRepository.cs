@@ -24,15 +24,14 @@ namespace _20241306PruebaTecnicaAFP.Infraestructura.Repositorio
         public Task<int> Insert(DepartamentoDTO departamento)
         {
             var dbParam = new DynamicParameters();
-            dbParam.Add("nombre", departamento.nivel_organizacion, DbType.Int32);
+            dbParam.Add("id_empresa", departamento.id_empresa, DbType.Int32);
+            dbParam.Add("nivel_organizacion", departamento.nivel_organizacion, DbType.Int32);
+            dbParam.Add("nombre", departamento.nombre, DbType.String);
             dbParam.Add("numero_empleados", departamento.numero_empleados, DbType.Int32);
-            dbParam.Add("nivel_organizacion", departamento.id_empresa, DbType.Int32);
-            dbParam.Add("id_empresa", departamento.nombre, DbType.String);
             var r = Task.FromResult(_dapperService.Insert<int>(
             "[dbo].[sp_insert_departamento]", dbParam, commandType: CommandType.StoredProcedure));
 
             return r;
         }
-
     }
 }
